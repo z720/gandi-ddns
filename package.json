@@ -1,0 +1,14 @@
+{
+  "name": "ddns-gandi",
+  "version": "1.0.0",
+  "description": "Update periodically an A record on your Gandi LiveDNS with your current IP",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "z720 <seb@z720.net>",
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.88.0"
+  }
+}
