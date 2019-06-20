@@ -4,7 +4,7 @@ Simple script to update DNS A record of your domain dynamically using gandi.net'
 Inspired from https://github.com/matt1/gandi-ddns
 
 The script simply connects to [Gandi LiveDNS API](http://doc.livedns.gandi.net) to update a specific A record from the current public IP Address.
-The script use https://www.ipify.org to get current IP Address, if the address is different from the one in the selected A record, the record is updated with the curren tIP Address. 
+The script use https://www.ipify.org to get current IP Address, if the address is different from the one in the selected A record, the record is updated with the current IP Address. 
 
 ## Pre-Requisite
 You'll need a GANDI API Key to use the script. You can create one in the Security section of your [Gandi Account](https://account.gandi.net/).
