@@ -37,7 +37,7 @@ module.exports = function(config) {
     }
     if (config.debug) console.debug(method, options.url)
     request(options, function(err, res, body) {
-      if(err) {
+      if(err || !res) {
         callback(messages.error_unknown + ": " + err)
       } else if(res.statusCode == 401) {
         callback(messages.e401)
