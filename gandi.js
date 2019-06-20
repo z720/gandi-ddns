@@ -6,6 +6,7 @@ const messages = {
   "e404": "Record doesn't exists, Please create record in zone first (update only)",
   "e4xx": "Unknown Error: ",
   "error_domain": "Configuration error missing domain or record to manage",
+  "error_unknown": "Unknown Error",
 };
 
 module.exports = function(config) {
@@ -36,11 +37,13 @@ module.exports = function(config) {
     }
     if (config.debug) console.debug(method, options.url)
     request(options, function(err, res, body) {
-      if(res.statusCode == 401) {
+      if(err) {
+        callback(messages.error_unknown + ": " + err)
+      } else if(res.statusCode == 401) {
         callback(messages.e401)
       } else if (res.statusCode == 404) {
         callback(messages.e404)
-      } else if (err || res.statusCode > 399) {
+      } else if (res.statusCode > 399) {
         callback(messages.e4xx + body.message + "(" + err || res.statusCode + ")" , body)
       } else {
         callback(false, body);
