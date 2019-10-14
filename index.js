@@ -54,7 +54,7 @@ let currentIp = function(callback) {
 
 
 
-let config = require("./config.js");
+let config = require("./config.js")(__dirname + "/config.json");
 // Try to get API Key from Environment:
 let gandi = require('./gandi.js')(config);
 

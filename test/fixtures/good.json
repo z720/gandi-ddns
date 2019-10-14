@@ -1,0 +1,8 @@
+{
+  "api_key": "abc123",
+  "endpoint": "https://dns.api.gandi.net/api/v5",
+  "ipcheck": "https://api.ipify.org",
+  "domain": "example.org",
+  "record": "@",
+  "interval": 300
+}
