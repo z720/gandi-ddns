@@ -3,6 +3,9 @@
   "version": "1.0.1",
   "description": "Update periodically an A record on your Gandi LiveDNS with your current IP",
   "main": "index.js",
+  "bin": {
+    "gandi-ddns": "./index.js"
+  },
   "scripts": {
     "start": "node index.js",
     "test": "mocha"
@@ -10,7 +13,8 @@
   "author": "z720 <seb@z720.net>",
   "license": "MIT",
   "dependencies": {
-    "request": "^2.88.0"
+    "request": "^2.88.0",
+    "yargs": "^14.2.0"
   },
   "devDependencies": {
     "mocha": "^6.2.1"
