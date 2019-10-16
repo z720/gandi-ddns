@@ -1,19 +1,22 @@
+
 # gandi-ddns
+
 Simple script to update DNS A record of your domain dynamically using gandi.net's API
 
 Inspired from https://github.com/matt1/gandi-ddns
 
 The script simply connects to [Gandi LiveDNS API](http://doc.livedns.gandi.net) to update a specific A record from the current public IP Address.
-The script use https://www.ipify.org to get current IP Address, if the address is different from the one in the selected A record, the record is updated with the curren tIP Address. 
+The script use [ipify](https://www.ipify.org) to get current IP Address, if the address is different from the one in the selected A record, the record is updated with the current IP Address.
 
 ## Pre-Requisite
+
 You'll need a GANDI API Key to use the script. You can create one in the Security section of your [Gandi Account](https://account.gandi.net/).
 
 ## How to use
 
 ### Direct run
 
-```
+```shell
 git clone https://github.com/z720/gandi-ddns .
 cd gandi-ddns
 npm install
@@ -24,7 +27,8 @@ npm start <yourdomain.example> <subdomain>
 ### Using a docker container
 
 Using Environment Variables
-```
+
+```shell
 docker run -e "GANDI_API_KEY=<your API Key>" -d z720/gandi-ddns <yourdomain.example> <subdomain>
 ```
 
@@ -43,4 +47,3 @@ It's possible to update the configuration by creating a config.json file in the 
 ## Limitations
 
 - Only one record is updated, it means that only one subdomain/domain is updated. You can use a CNAME records to match the updated records or run several instance of the script at once.
-

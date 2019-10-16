@@ -19,7 +19,7 @@ function config (argv, environment) {
       try {
         configFile = require(file);
       } catch(e) {
-        console.log("Unable to parse config file " + file, e)
+        console.log("Unable to parse config file " + file, e);
         configFile = {};
       }
     } else {
@@ -48,7 +48,7 @@ function config (argv, environment) {
     if (args[key] && value !== args[key]) {
       config[key] = args[key];
     }
-  })
+  });
 
   return config;
 }

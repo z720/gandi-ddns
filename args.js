@@ -26,4 +26,4 @@ module.exports = require("yargs")
     })
     .middleware(positional)
     .help()
-    .argv
+    .argv;
