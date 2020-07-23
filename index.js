@@ -16,10 +16,10 @@ const messages = {
 
 let checkIP = function() {
   gandi.getRecord(function compareIP(err, record) {
-    if (config.debug) console.debug('Found ', record['rrset_name'], config.domain, record['rrset_values'][0])
+    if (config.debug) console.debug('Found ', record['rrset_name'], config.domain, record['rrset_values'][0]);
     if(err) {
       //Couldn't get current record at Gandi
-      console.error(err)
+      console.error(err);
     } else {
       currentIp(function(err, current) {
         let oldip = record['rrset_values'][0];
@@ -30,14 +30,14 @@ let checkIP = function() {
             if (err) {
               console.error(err);
             } else{
-              console.log('Previous IP ', oldip, 'Replaced by', current.ip)
+              console.log('Previous IP ', oldip, 'Replaced by', current.ip);
             }
           });
         }
-      })
+      });
     }
-  })
-}
+  });
+};
 
 // check existing record
 let currentIp = function(callback) {
@@ -45,10 +45,10 @@ let currentIp = function(callback) {
     if (err) {
       callback(err, null);
     } else {
-      callback(null, { ip: body })
+      callback(null, { ip: body });
     }
-  })
-}
+  });
+};
 
 
 
