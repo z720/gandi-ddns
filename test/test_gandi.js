@@ -1,3 +1,4 @@
+"use strict";
 var assert = require('assert');
 var nock = require('nock');
 var gandi = require('../gandi')({
@@ -20,7 +21,7 @@ describe('Gandi Client API', function() {
            "rrset_values": ["1.2.3.4"]
 		  	})
 		  .put("/domains/example.test/records/www/A")
-		  .reply(200)
+		  .reply(200);
 		  });
 		 
   describe('get Records', function() {
