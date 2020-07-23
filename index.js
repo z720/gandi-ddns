@@ -16,16 +16,16 @@ const messages = {
 
 let checkIP = function() {
   gandi.getRecord(function compareIP(err, record) {
-    if (config.debug) console.debug('Found ', record['rrset_name'], config.domain, record['rrset_values'][0]);
+    if (config.debug) console.debug('Found ', record.rrset_name, config.domain, record.rrset_values[0]);
     if(err) {
       //Couldn't get current record at Gandi
       console.error(err);
     } else {
       currentIp(function(err, current) {
-        let oldip = record['rrset_values'][0];
-        if (config.debug) console.debug('Current IP:', current.ip)
+        let oldip = record.rrset_values[0];
+        if (config.debug) console.debug('Current IP:', current.ip);
         if (oldip != current.ip) {
-          record['rrset_values'][0] = current.ip;
+          record.rrset_values[0] = current.ip;
           gandi.updateRecord(record, function(err) {
             if (err) {
               console.error(err);
@@ -64,7 +64,7 @@ gandi.getRecord(function(err, record) {
   if(err) {
     console.error(messages.error_init, err);
   } else {
-    console.log(messages.ok, record['rrset_name'], config.domain, record['rrset_values'][0]);
+    console.log(messages.ok, record.rrset_name, config.domain, record.rrset_values[0]);
     checkIP();
     // start a loop every {interval}
     setInterval(checkIP, config.interval * 1000 );

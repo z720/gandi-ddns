@@ -1,3 +1,4 @@
+"use strict";
 const defaultConfig = {
   api_key: undefined,
   endpoint: "https://dns.api.gandi.net/api/v5",

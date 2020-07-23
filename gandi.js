@@ -1,4 +1,5 @@
 "use strict";
+
 const request = require('request');
 
 const messages = {
@@ -21,7 +22,7 @@ module.exports = function(config) {
 			throw("Unexpected null callback");
 		}
 		if (config.domain == undefined || config.record == undefined) {
-			callback(messages.error_domain)
+			callback(messages.error_domain);
 		}
 		let options = {
 			method: method,
@@ -30,25 +31,25 @@ module.exports = function(config) {
 				'X-Api-Key': config.api_key
 			},
 			json: true
-		}
+		};
 		if (method == 'PUT') {
 			options.body = data;
 		}
-		if (config.debug) console.debug(method, options.url)
+		if (config.debug) console.debug(method, options.url);
 		request(options, function(err, res, body) {
 			if(!res || err) {
-				callback(messages.e4xx + "(" + err || 'no status' + ")" , body)
+				callback(messages.e4xx + "(" + err || 'no status' + ")" , body);
 			} else if (res.statusCode && res.statusCode == 401) {
-				callback(messages.e401)
+				callback(messages.e401);
 			} else if (res && res.statusCode && res.statusCode == 404) {
-				callback(messages.e404)
+				callback(messages.e404);
 			} else if (res.statusCode > 399) {
-				callback(messages.e4xx + body.message + "(" + res.statusCode + ")" , body)
+				callback(messages.e4xx + body.message + "(" + res.statusCode + ")" , body);
 			} else {
 				callback(false, body);
 			}
 		});
-	}
+	};
 	return {
 		getRecord: function(callback) {
 			callAPI(callback);
@@ -56,6 +57,6 @@ module.exports = function(config) {
 		updateRecord: function(data, callback) {
 			callAPI(data, callback);
 		}
-	}
+	};
 
-}
+};
