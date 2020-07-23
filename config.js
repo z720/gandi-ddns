@@ -1,3 +1,4 @@
+"use strict";
 const defaultConfig = {
   api_key: undefined,
   endpoint: "https://dns.api.gandi.net/api/v5",
@@ -16,7 +17,7 @@ function config (file) {
       try {
         configFile = require(file);
       } catch(e) {
-        console.log("Unable to parse config file " + file, e)
+        console.log("Unable to parse config file " + file, e);
         configFile = {};
       }
     } else {
