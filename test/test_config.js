@@ -13,9 +13,9 @@ describe('Configuration', function() {
       assert.equal(c.api_key, "abc123");
     });
   });
-  describe('from bad.json', function() {
+  describe('from bad.notjson', function() {
     it('should return undefined api_key when the value is read from bad file', function() {
-      var c = require("../config")(__dirname + "/fixtures/bad.json");
+      var c = require("../config")(__dirname + "/fixtures/bad.notjson");
       assert.equal(c.api_key, undefined);
     });
   });
