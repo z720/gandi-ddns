@@ -71,7 +71,7 @@ gandi.getRecord(function(err, record) {
 				setInterval(checkIP, config.interval * 1000 );
 			}
 		} else {
-			console.log(messages.dryrun, record['rrset_name'], config.domain, record['rrset_values'][0]);
+			console.log(messages.dryrun, record.rrset_name, config.domain, record.rrset_values[0]);
 		}
 	}
 });
