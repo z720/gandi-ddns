@@ -61,5 +61,4 @@ module.exports = function(config) {
 			callAPI(data, callback);
 		}
 	};
-
 };
