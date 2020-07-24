@@ -11,11 +11,13 @@ const defaultConfig = {
 
 const fs = require('fs');
 function config (argv, environment) {
-  let configFile = {},
+  let defConfig= "./config.json",
+  	configFile = {},
     args = {...argv},
-    file = args.config || "./config.json",
+    usefile = args.config || fs.existsSync(defConfig),
+    file = args.config || defConfig,
     env = {...environment};
-  if (file) {
+  if (usefile) {
     if (fs.existsSync(file)) {
       try {
         configFile = require(file);
