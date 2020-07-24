@@ -1,9 +1,10 @@
+"use strict";
 var assert = require('assert');
 describe('Configuration', function() {
   describe('from default', function() {
     it('should return undefined api_key when the value is read from default', function() {
       var c = require("../config")();
-      assert.equal(c["api_key"], undefined);
+      assert.equal(c.api_key, undefined);
     });
   });
   describe('from good.json', function() {
@@ -12,7 +13,7 @@ describe('Configuration', function() {
       assert.equal(c["api_key"], "abc123");
     });
   });
-  describe('from bad.json', function() {
+  describe('from bad.notjson', function() {
     it('should return undefined api_key when the value is read from bad file', function() {
       var c = require("../config")({ "config": __dirname + "/fixtures/bad.json"}, {});
       assert.equal(c["api_key"], undefined);
