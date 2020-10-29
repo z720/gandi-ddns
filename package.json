@@ -17,7 +17,7 @@
     "yargs": "^14.2.0"
   },
   "devDependencies": {
-    "mocha": "^8.0.1",
+    "mocha": "^8.2.0",
     "nock": "^13.0.2"
   }
 }
