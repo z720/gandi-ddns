@@ -10,14 +10,19 @@ on:
     branches: [ main, develop ]
 
 jobs:
-  build:
-
+  lts_versions:
+    name: "Get versions"
     runs-on: ubuntu-latest
-
+    steps:
+      - id: set-matrix
+        run: echo "::set-output name=matrix::$(curl -s https://raw.githubusercontent.com/fvdm/nodejs-versions/main/lts.json)"
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+  build:
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [10.x, 12.x, 14.x, lts]
-
+        node-version: ${{ fromJson(needs.lts_versions.outputs.matrix) }}
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -27,3 +32,4 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm test
+    - run: npm audit --production
