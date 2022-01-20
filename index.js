@@ -23,10 +23,9 @@ let checkIP = function(domain) {
 		} else {
 			currentIp(function(err, current) {
 				let oldip = record.rrset_values[0];
-				if (err || !current) {
+				if (err || (current.ip == null)) {
 					// Impossible to get current ip
-					console.error(err);
-					console.log
+					console.error(current.msg);
 				} else {
 					if (config.debug) console.debug('Current IP:', current.ip);
 					if (oldip != current.ip) {

@@ -5,17 +5,23 @@ const request = require('request');
 module.exports = function(url, timeout) {
 	// check existing record
 	return function(callback) {
-		let opts = { json: true, url : url };
+		let opts = { json: true, url : url }, response = {
+			ip: null,
+			msg: null
+		};
 		if (timeout > 199) {
 			opts.timeout = timeout;
 		}
 		request.get(opts, (err, res, body) => {
 			if (err) {
-				callback(err, null);
+				response.msg = err;
+				callback(err, response);
 			} else if (res.statusCode > 399) {
-				callback(res.statusCode, body);
+				response.msg = body;
+				callback(res.statusCode, response);
 			} else {
-				callback(false, { ip: body });
+				response.ip = body;
+				callback(false, response);
 			}
 		});
 	};
