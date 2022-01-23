@@ -52,7 +52,7 @@ let config = require("./config.js")(args, process.env);
 // Try to get API Key from Environment:
 let gandi = require('./gandi.js')(config);
 
-const currentIp = require('./currentip')(config);
+const currentIp = require('./currentip')(config.ipcheck, config.timeout, config.debug);
 
 // first check: could we get the record
 gandi.getRecord(function(err, record) {

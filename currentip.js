@@ -2,10 +2,13 @@
 const request = require('request');
 
 
-module.exports = function(url, timeout) {
+module.exports = function(url, timeout, debug) {
 	// check existing record
+	if (debug) {
+		request.debug = true;
+	}
 	return function(callback) {
-		let opts = { json: true, url : url }, response = {
+		let opts = { json: true, url: url }, response = {
 			ip: null,
 			msg: null
 		};
