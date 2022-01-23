@@ -23,10 +23,9 @@ let checkIP = function(domain) {
 		} else {
 			currentIp(function(err, current) {
 				let oldip = record.rrset_values[0];
-				if (err || !current) {
+				if (err || (current.ip == null)) {
 					// Impossible to get current ip
-					console.error(err);
-					console.log
+					console.error(current.msg);
 				} else {
 					if (config.debug) console.debug('Current IP:', current.ip);
 					if (oldip != current.ip) {
@@ -53,7 +52,7 @@ let config = require("./config.js")(args, process.env);
 // Try to get API Key from Environment:
 let gandi = require('./gandi.js')(config);
 
-const currentIp = require('./currentip')(config);
+const currentIp = require('./currentip')(config.ipcheck, config.timeout, config.debug);
 
 // first check: could we get the record
 gandi.getRecord(function(err, record) {
