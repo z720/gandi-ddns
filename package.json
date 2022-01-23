@@ -1,6 +1,6 @@
 {
   "name": "ddns-gandi",
-  "version": "1.0.5-dev",
+  "version": "1.0.4",
   "description": "Update periodically an A record on your Gandi LiveDNS with your current IP",
   "main": "index.js",
   "bin": {
