@@ -42,6 +42,9 @@ function config (argv, environment) {
   if (env.GANDI_RECORD) {
     envi.record = env.GANDI_RECORD;
   }
+  if (env.DEBUG) {
+    envi.debug = true;
+  }
 
   let config = { ...defaultConfig, ...configFile, ...envi};
 
@@ -52,6 +55,9 @@ function config (argv, environment) {
       config[key] = args[key];
     }
   });
+  if(config.debug) {
+    console.debug("Config", config);
+  }
 
   return config;
 }
