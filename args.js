@@ -8,7 +8,7 @@ module.exports = require("yargs")
 				describe: 'Override config file name and path'
 		})
 		.option('api-key', {
-				demandOption: true,
+				demandOption: false,
 				alias: 'api_key',
 				describe: 'Your GANDI api key. Can be set through environment variable GANDI_API_KEY Env'
 		})
