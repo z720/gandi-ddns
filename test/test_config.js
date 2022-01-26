@@ -3,8 +3,8 @@ var assert = require('assert');
 describe('Configuration', function() {
   describe('from default', function() {
     it('should return undefined api_key when the value is read from default', function() {
-      var c = require("../config")();
-      assert.equal(c.api_key, undefined);
+      var c = require("../config")({ config: __dirname + "/fixtures/nope.json" },{});
+      assert.equal(c.api_key, undefined, "api-key undefined");
     });
   });
   describe('from good.json', function() {
