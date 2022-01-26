@@ -4,7 +4,8 @@
   "description": "Update periodically an A record on your Gandi LiveDNS with your current IP",
   "main": "index.js",
   "bin": {
-    "gandi-ddns": "./index.js"
+    "gandi-ddns": "./index.js",
+    "gandi-healthcheck": "./healthcheck.js"
   },
   "scripts": {
     "start": "node index.js",
