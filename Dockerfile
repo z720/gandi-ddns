@@ -12,4 +12,4 @@ RUN npm ci --only=production
 COPY *.js ./
 
 ENTRYPOINT ["node", "index.js"]
-HEALTHCHECK ["node", "healthcheck.js"]
+HEALTHCHECK CMD ["node", "healthcheck.js"]
