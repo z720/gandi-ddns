@@ -18,6 +18,7 @@ const status = {
 	lastSuccess: undefined,
 	lastError: undefined,
 	lastChange: undefined,
+	interval: undefined,
 	errorCount: 0
 }
 
@@ -32,16 +33,16 @@ function updateStatus() {
 
 function error(type, reason) {
 	console.error('Error', type, reason);
-	status.lastError=new Date();
+	status.lastError = Date.now();
 	status.errorCount += 1;
 	updateStatus();
 }
 
 function success(change, msg) {
 	status.errorCount = 0;
-	status.lastSuccess = new Date();
+	status.lastSuccess = Date.now();
 	if(change) {
-		status.lastChange = new Date();
+		status.lastChange = Date.now();
 	}
 	if(msg) {
 		console.log(msg);
@@ -85,6 +86,7 @@ let checkIP = function(domain) {
 let args = require('./args.js');
 
 let config = require("./config.js")(args, process.env);
+status.interval = config.interval;
 
 // Try to get API Key from Environment:
 let gandi = require('./gandi.js')(config);
