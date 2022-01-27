@@ -29,7 +29,8 @@ module.exports = function(config) {
 			method: method,
 			url: config.endpoint + "/domains/" + config.domain + "/records/" + config.record + "/A",
 			headers: {
-				'X-Api-Key': config.api_key
+				'X-Api-Key': config.api_key,
+				'Authorization': `ApiKey ${config.api_key}`
 			},
 			json: true
 		};
