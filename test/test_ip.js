@@ -10,7 +10,7 @@ var testconfig = {
 	domain: 'example.test',
   record: 'www',
 };
-var currentIp = require('../currentip')(testconfig.ipcheck, 200);
+var currentIp = require('../lib/currentip')(testconfig.ipcheck, 200);
 //timeout 200 for test socket timout
 
 describe('ipify API', function() {

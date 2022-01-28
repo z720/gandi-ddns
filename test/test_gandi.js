@@ -10,7 +10,7 @@ var testconfig = {
 	domain: 'example.test',
   record: 'www',
 };
-var gandi = require('../gandi')(testconfig);
+var gandi = require('../lib/gandi')(testconfig);
 
 describe('Gandi Client API', function() {
 	describe('Normal Flow', function() {
@@ -19,12 +19,12 @@ describe('Gandi Client API', function() {
 			nock('https://dns.api.gandi.net/api/v5')
 			  .get("/domains/example.test/records/www/A")
 			  .reply(200, {
-			  		"rrset_ttl": 10800,
-	           "rrset_values": ["1.2.3.4"]
-			  	})
+			  	"rrset_ttl": 10800,
+	          	"rrset_values": ["1.2.3.4"]
+			  })
 			  .put("/domains/example.test/records/www/A")
 			  .reply(200);
-			  });
+		});
 			 
 	  describe('get Records', function() {
 	    it('should return DNS Records', function() {
@@ -45,7 +45,7 @@ describe('Gandi Client API', function() {
 	describe("Error Management", function() {
 	  describe('Unknown Error', function() {
 	  	it("should say unknown error if no status Code", function() {
-	  		let gerrors = require('../gandi')({...testconfig, endpoint: null});
+	  		let gerrors = require('../lib/gandi')({...testconfig, endpoint: null});
 	  		gerrors.getRecord(function(err, record) {
 	  			assert.equal(err.substring(0, 14), 'Unknown Error:');
 	  		});

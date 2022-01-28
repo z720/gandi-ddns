@@ -13,7 +13,7 @@ const messages = {
 	"dryrun": "Dry Run: current record: ",
 	'noip': "Couldn't get current ip: no update"
 };
-
+ 
 const status = {
 	lastSuccess: undefined,
 	lastError: undefined,
@@ -83,15 +83,15 @@ let checkIP = function(domain) {
 };
 
 
-let args = require('./args.js');
+let args = require('./lib/args.js');
 
-let config = require("./config.js")(args, process.env);
+let config = require("./lib/config.js")(args, process.env);
 status.interval = config.interval;
 
 // Try to get API Key from Environment:
-let gandi = require('./gandi.js')(config);
+let gandi = require('./lib/gandi.js')(config);
 
-const currentIp = require('./currentip')(config.ipcheck, config.timeout, config.debug);
+const currentIp = require('./lib/currentip')(config.ipcheck, config.timeout, config.debug);
 
 // first check: could we get the record
 gandi.getRecord(function(err, record) {
