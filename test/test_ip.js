@@ -7,7 +7,7 @@ var testconfig = {
   ipcheck: "https://api.ipify.org",
   interval: 5 * 60, // every 5 minutes,
   debug: false,
-	domain: 'example.test',
+  domain: 'example.test',
   record: 'www',
 };
 var currentIp = require('../lib/currentip')(testconfig.ipcheck, 200);
