@@ -19,7 +19,6 @@ describe('Status report', () => {
 		await status.init(999);
 		st = readStatus();
 		console.log('interval', st);
-		process.exit(1);
 		assert.equal(st.interval, 999, 'Interval');
 	});
 	it("should save current date as lastSuccess on success", async () => {
