@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 function exit(ok) {
 	if(!ok) {
 		process.exit(1);

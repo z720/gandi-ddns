@@ -1,4 +1,4 @@
-
+#!/usr/bin/env node
 "use strict";
 const status = require('./lib/status.js'); 
 // Get config:
@@ -11,10 +11,11 @@ const messages = {
 	"error_init": "Couldn't initiate process: ",
 	"ok": "Start monitoring IP ",
 	"dryrun": "Dry Run: current record: ",
-	'noip': "Couldn't get current ip: no update"
+	"noip": "Couldn't get current ip: no update",
+	"currentIP": "Current IP"
 };
  
-let checkIP = function(domain) {
+let checkIP = function() {
 	gandi.getRecord(function compareIP(err, record) {
 		if (config.debug) console.debug('Found ', record.rrset_name, config.domain, record.rrset_values[0]);
 		if(err) {
@@ -64,13 +65,20 @@ gandi.getRecord(function(err, record) {
 	} else {
 		if (!args.dryRun) {
 			console.log(messages.ok, record.rrset_name, config.domain, record.rrset_values[0]);
-			checkIP(args.domain);
+			checkIP();
 			// start a loop every {interval} if interval
 			if (config.interval > 0) {
 				setInterval(checkIP, config.interval * 1000 );
 			}
 		} else {
-			console.log(messages.dryrun, record.rrset_name, config.domain, record.rrset_values[0]);
+			currentIp(function(err, current) {
+				let ip = 'Unknown';
+				if(!err) {
+					ip = current.ip;
+				}
+				console.log(messages.dryrun, record.rrset_name, config.domain, record.rrset_values[0], messages.currentIP, ip);
+			});
+
 		}
 	}
 });
